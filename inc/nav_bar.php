@@ -28,7 +28,7 @@
                 <li class="active"><a href="?p=home">Home</a></li>
                 <li><a href="?p=empresa">Empresa</a></li>
                 <li><a href="?p=produtos">Produtos</a></li>
-                <li><a href="?p=serviços">Serviços</a></li>
+                <li><a href="?p=servicos">Serviços</a></li>
                 <li><a href="?p=contato">Contato</a></li>
             </ul>
         </div><!--/.nav-collapse -->
