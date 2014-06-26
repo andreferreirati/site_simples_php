@@ -16,7 +16,6 @@ if( isset($_POST['bntEnviar']) ) {
     $assunto  = filter_input( INPUT_POST, 'assunto', FILTER_SANITIZE_STRING );
     $mensagem = filter_input( INPUT_POST, 'mensagem', FILTER_SANITIZE_STRING );
 
-
     if( !empty( $nome ) AND !empty( $email ) AND !empty( $assunto ) AND !empty( $mensagem ) ) {
         $msg = true;
     }else{
@@ -29,7 +28,7 @@ if( isset($_POST['bntEnviar']) ) {
 <div class="container page-header">
     <h2>Formulário de contato</h2>
 
-    <?php if( $msg == true ) : ?>
+    <?php if( isset( $msg ) AND $msg == true ) : ?>
         <div role="alert" class="alert fade in">
             <button data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
             <div class="row">
