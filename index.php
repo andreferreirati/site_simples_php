@@ -10,6 +10,7 @@
  * Copyright: 2014
  */
 
+require_once( 'autoload.php' );
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -33,7 +34,9 @@
 <?php require_once( 'inc/nav_bar.php' ); ?>
 
 <div class="container theme-showcase" role="main" id="containerPrincipal">
-    <?php require_once( 'inc/home.php' ); ?>
+    <?php
+        isset( $_GET['p'] ) ? classes\Url::verificaUrl( $_GET['p'] ) : require_once( 'inc/home.php' );
+    ?>
 </div> <!-- /container -->
 
 <?php require_once( 'inc/footer.php' ); ?>
