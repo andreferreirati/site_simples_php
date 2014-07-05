@@ -18,6 +18,8 @@ function paginaRequisitada()
 {
     $rota      = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     $arrayRota = explode('/', $rota['path']);
+
     $pagina    = $arrayRota[1];
+
     return $pagina;
 }

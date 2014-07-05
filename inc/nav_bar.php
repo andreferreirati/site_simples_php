@@ -21,15 +21,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="?p=home">Site Simples em php</a>
+            <a class="navbar-brand" href="home">Site Simples em php</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="?p=home">Home</a></li>
-                <li><a href="?p=empresa">Empresa</a></li>
-                <li><a href="?p=produtos">Produtos</a></li>
-                <li><a href="?p=servicos">Serviços</a></li>
-                <li><a href="?p=contato">Contato</a></li>
+                <li class="active"><a href="home">Home</a></li>
+                <li><a href="empresa">Empresa</a></li>
+                <li><a href="produtos">Produtos</a></li>
+                <li><a href="servicos">Serviços</a></li>
+                <li><a href="contato">Contato</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
