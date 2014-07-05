@@ -10,6 +10,13 @@
  * Copyright: 2014
  */
 
+
+$root     = $_SERVER['DOCUMENT_ROOT'];
+$base_url = 'http://' . $_SERVER['SERVER_NAME'];
+
+
+
+
 /**
  * Função que extrai o nome da pagina solicitada
  * @return mixed

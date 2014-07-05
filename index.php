@@ -24,9 +24,9 @@ require_once( 'config.php' );
 
     <title>Site simple em php</title>
 
-    <link href="publico/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="publico/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="publico/css/stylos.css" rel="stylesheet">
+    <link href="<?php echo $base_url ?>/publico/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $base_url ?>/publico/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="<?php echo $base_url ?>/publico/css/stylos.css" rel="stylesheet">
 </head>
 
 <body role="document">
@@ -40,6 +40,6 @@ require_once( 'config.php' );
 <?php require_once( 'inc/footer.php' ); ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="publico/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
