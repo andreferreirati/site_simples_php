@@ -7,7 +7,7 @@
  * Date: 11/07/14
  * Time: 00:13
  * Project: estudo_php
- * Copyright: 2014
+ * Copyright: 2014.
  */
 
 
