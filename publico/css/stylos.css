@@ -11,3 +11,6 @@
 /*Pagina fixtures */
 .fixturSucces{text-align: center; color: #ffffff; background: #323A82;margin-top: 3%; padding: 3px;}
 .fixturError{text-align: center; color: #ffffff; background: #A20000;margin-top: 3%; padding: 3px;}
+
+/*pagina pesquisa*/
+.erroPesquisa{margin-top: 3%; background: #A90F09; color: #ffffff; text-align: center; font-size: 20px; padding: 5px}

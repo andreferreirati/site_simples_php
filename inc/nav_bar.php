@@ -37,6 +37,10 @@ $menu = $stmt->fetchAll( PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
 
             </ul>
+            <form class="navbar-form navbar-right" method="post" action="pesquisa">
+                <input type="text" placeholder="Pesquisar" class="form-control" id="txtPesquisa" name="txtPesquisa">
+                <input type="submit" value="Pesquisar.."/>
+            </form>
         </div><!--/.nav-collapse -->
     </div>
 </div>
