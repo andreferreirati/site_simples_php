@@ -9,6 +9,13 @@
  * Project: estudo_php
  * Copyright: 2014
  */
+$pdo  = conecta();
+$sql  = "SELECT tm.id_menu, tm.nome_menu, tm.href_menu, tm.hint_menu, tm.sit_cancelado FROM tbl_menu tm
+         WHERE  tm.sit_cancelado = 'N'";
+$stmt = $pdo->prepare( $sql );
+$stmt->execute();
+$menu = $stmt->fetchAll( PDO::FETCH_ASSOC);
+
 ?>
 
 <!-- Fixed navbar -->
@@ -21,15 +28,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home">Site Simples em php</a>
+            <a class="navbar-brand" href="/">Site Simples em php</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="home">Home</a></li>
-                <li><a href="empresa">Empresa</a></li>
-                <li><a href="produtos">Produtos</a></li>
-                <li><a href="servicos">Serviços</a></li>
-                <li><a href="contato">Contato</a></li>
+                <?php foreach( $menu as $m ) : ?>
+                    <li><a href="<?php echo $m['href_menu'] ?>" title="<?php echo utf8_encode( $m['hint_menu'] );?>"><?php echo utf8_encode( $m['nome_menu'] ); ?></a></li>
+                <?php endforeach; ?>
+
             </ul>
         </div><!--/.nav-collapse -->
     </div>

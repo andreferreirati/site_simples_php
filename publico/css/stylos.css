@@ -6,3 +6,8 @@
 .paginaErro #imgErro img{background: #ccc; margin-left: 25%}
 .paginaErro h2, h3{text-align: center;}
 .paginaErro h3{padding-bottom: 10%;}
+
+
+/*Pagina fixtures */
+.fixturSucces{text-align: center; color: #ffffff; background: #323A82;margin-top: 3%; padding: 3px;}
+.fixturError{text-align: center; color: #ffffff; background: #A20000;margin-top: 3%; padding: 3px;}
