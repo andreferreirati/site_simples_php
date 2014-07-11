@@ -23,3 +23,15 @@ function paginaRequisitada()
 
     return $pagina;
 }
+
+function limitarCaracter( $frase, $limite )
+{
+    $tamanho = strlen( $frase ); //tamanho da frase
+
+    if( $tamanho <= $limite ) {
+        $novaFrase = $frase;
+    }else {
+        $novaFrase    = trim( substr( $frase, 0, $limite ) ) . '...';
+    }
+    return utf8_encode( $novaFrase );
+}

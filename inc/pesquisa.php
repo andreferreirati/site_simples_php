@@ -10,7 +10,7 @@
  * Copyright: 2014.
  */
 
-
+echo '<div id="containerPesquisa">';
 $stringPesquisa = filter_input(INPUT_POST,'txtPesquisa', FILTER_SANITIZE_STRING);
 
 if( isset($stringPesquisa) AND $stringPesquisa <> null ) {
@@ -20,12 +20,14 @@ if( isset($stringPesquisa) AND $stringPesquisa <> null ) {
     $stmt = $pdo->prepare( $sql );
     $stmt->execute();
     $noticiaEncontrada = $stmt->fetchAll( PDO::FETCH_OBJ );
-    echo '<pre>'.__FILE__.': '.__LINE__.'<hr>';print_r($noticiaEncontrada);echo'<hr></pre>';
-    echo '<ul>';
-      foreach( $noticiaEncontrada as $noticia) : ?>
-        <li><?php $noticia->titulo_conteudo; ?></li>
-<?php endforeach;
-    echo '</ul>';
+      echo '<ul>';
+      foreach( $noticiaEncontrada as $noticia) :
+        echo '<li><b>' .utf8_encode( $noticia->titulo_conteudo ).  '</b><br />';
+        echo limitarCaracter( $noticia->conteudo_conteudo, 500 ). '<a href="/'.$noticia->slug_conteudo .'">Leia mais</a>  </li>';
+      endforeach;
+      echo '</ul>';
 }else{
     echo '<p class="erroPesquisa">Favor informar a palavra a ser pesquisada</p>';
 }
+
+echo '</div>';

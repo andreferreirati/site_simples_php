@@ -19,7 +19,7 @@ $home = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <div class="page-header">
-    <h1><?php echo utf8_encode( $home['titulo_Conteudo'] ); ?></h1>
+    <h1><?php echo utf8_encode( $home['titulo_conteudo'] ); ?></h1>
     <p><?php  echo utf8_encode( $home['conteudo_conteudo'] );?></p>
 </div>
 
