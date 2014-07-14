@@ -13,23 +13,39 @@
 try {
 
     $pdo = conecta();
+    $verficarExistenciaTabela = fopen( 'sql/verificaTabela.sql', 'r' );
+    if( $verficarExistenciaTabela ) {
+        while( !feof( $verficarExistenciaTabela ) ) {
+            $stmt     = $pdo->prepare( fgets( $verficarExistenciaTabela ) );
+            $stmt->execute();
+            $resposta = $stmt->rowCount();
+        }//end while
 
-    $scriptSql = fopen( 'sql/script2.sql', 'r' );
-    $contador  = 0;
-    if( $scriptSql ) {
-        //verifica se chegou a final do arquivo
-        while ( !feof( $scriptSql ) ) {
-            $stmt     = $pdo->prepare( fgets( $scriptSql ) );
-            $conteudo = $stmt->execute();
-            $contador++;
-        }
-        fclose ( $scriptSql );
+        if( $resposta < 1 ){
+            $scriptSql = fopen( 'sql/script2.sql', 'r' );
+            $contador  = 0;
+            if( $scriptSql ) {
+                //verifica se chegou a final do arquivo
+                while ( !feof( $scriptSql ) ) {
+                    $stmt     = $pdo->prepare( fgets( $scriptSql ) );
+                    $conteudo = $stmt->execute();
+                    $contador++;
+                }
+                fclose ( $scriptSql );
 
-    }else {
-        echo '<h2 class="fixturError">Não foi possível abrir o arquivo script2.sql, <br />favor verificar o caminho na função <b>FOPEN</b></h2>';
-    }
+                if( $conteudo ){
+                    echo '<h2 class="fixturSucces">O script sql foi executado com sucesso!! </h2>';
+                    echo '<h3 class="fixturSucces">Linhas SQL executadas: ' . $contador . '</h3>';
+                }else{
+                    echo '<h2 class="fixturError">houve um erro na execução do script SQL</h2>';
+                }//end if
 
-    //$pdo  = conecta();
+            }else {
+                echo '<h2 class="fixturError">Não foi possível abrir o arquivo script2.sql, <br />favor verificar o caminho na função <b>FOPEN</b></h2>';
+            }//end if
+        }//end if
+    }//end if
+
     $sql  = "SELECT tm.id_menu, tm.nome_menu, tm.href_menu, tm.hint_menu, tm.sit_cancelado FROM tbl_menu tm
              WHERE  tm.sit_cancelado = 'N' LIMIT 6";
     $stmt = $pdo->prepare( $sql );

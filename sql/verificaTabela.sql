@@ -1,0 +1,1 @@
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'site_simples' AND table_name = 'tbl_menu';
