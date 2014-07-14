@@ -3,18 +3,46 @@
  * File: nav_bar.php
  * Author: Luis Alberto Concha Curay
  * E-mail: luvett11@gmail.com
- * Language: 
+ * Language:
  * Date: 26/06/14
  * Time: 16:40
  * Project: estudo_php
  * Copyright: 2014
  */
-$pdo  = conecta();
-$sql  = "SELECT tm.id_menu, tm.nome_menu, tm.href_menu, tm.hint_menu, tm.sit_cancelado FROM tbl_menu tm
-         WHERE  tm.sit_cancelado = 'N'";
-$stmt = $pdo->prepare( $sql );
-$stmt->execute();
-$menu = $stmt->fetchAll( PDO::FETCH_ASSOC);
+
+try {
+
+    $pdo = conecta();
+
+    $scriptSql = fopen( 'sql/script2.sql', 'r' );
+    $contador  = 0;
+    if( $scriptSql ) {
+        //verifica se chegou a final do arquivo
+        while ( !feof( $scriptSql ) ) {
+            $stmt     = $pdo->prepare( fgets( $scriptSql ) );
+            $conteudo = $stmt->execute();
+            $contador++;
+        }
+        fclose ( $scriptSql );
+
+    }else {
+        echo '<h2 class="fixturError">Não foi possível abrir o arquivo script2.sql, <br />favor verificar o caminho na função <b>FOPEN</b></h2>';
+    }
+
+    //$pdo  = conecta();
+    $sql  = "SELECT tm.id_menu, tm.nome_menu, tm.href_menu, tm.hint_menu, tm.sit_cancelado FROM tbl_menu tm
+             WHERE  tm.sit_cancelado = 'N' LIMIT 6";
+    $stmt = $pdo->prepare( $sql );
+
+    $stmt->execute();
+    $menu = $stmt->fetchAll( PDO::FETCH_ASSOC);
+
+    $pdo = null;
+
+} catch ( PDOException $e ) {
+    echo '<h2 class="fixturError">' . $e->getMessage () .'</h2>';
+}
+
 
 ?>
 
