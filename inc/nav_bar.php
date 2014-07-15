@@ -13,6 +13,8 @@
 try {
 
     $pdo = conecta();
+
+    /** /
     $verficarExistenciaTabela = fopen( 'sql/verificaTabela.sql', 'r' );
     if( $verficarExistenciaTabela ) {
         while( !feof( $verficarExistenciaTabela ) ) {
@@ -45,15 +47,22 @@ try {
             }//end if
         }//end if
     }//end if
+    /**/
 
-    $sql  = "SELECT tm.id_menu, tm.nome_menu, tm.href_menu, tm.hint_menu, tm.sit_cancelado FROM tbl_menu tm
-             WHERE  tm.sit_cancelado = 'N' LIMIT 6";
-    $stmt = $pdo->prepare( $sql );
+    try{
+        $sql  = "SELECT tm.id_menu, tm.nome_menu, tm.href_menu, tm.hint_menu, tm.sit_cancelado FROM tbl_menu tm
+             WHERE  tm.sit_cancelado = 'N'";
+        $stmt = $pdo->prepare( $sql );
 
-    $stmt->execute();
-    $menu = $stmt->fetchAll( PDO::FETCH_ASSOC);
+        $stmt->execute();
+        $menu = $stmt->fetchAll( PDO::FETCH_ASSOC);
 
-    $pdo = null;
+        $pdo = null;
+    }catch (PDOException $e){
+        echo '<h2 class="fixturError">Prezado Usuário:</h2>';
+        echo '<p class="fixturErrorMsgUsuario">Antes de rodre á aplicação é necessário executar o script2.sql para montar a estrutura do site
+        <br/>Você pode encontrar o script aqui: <a href="https://github.com/luvett/site_simples_php/blob/master/sql/script2.sql" target="_blank">Script SQL</a></p>';
+    }
 
 } catch ( PDOException $e ) {
     echo '<h2 class="fixturError">' . $e->getMessage () .'</h2>';
