@@ -28,10 +28,10 @@ require_once ('../config.php');
         <h1>Sistema de Noticias</h1>
         <h2>Área restrita</h2>
         <div class="msgRetorno"></div>
-        <form action="" class="form" method="post" name="form_login">
+        <form action="" class="form" method="post" name="form_login" id="defaultForm">
             <div class="form-group">
-                <label for="">CPF</label>
-                <input type="text" name="cpf" id="cpf" class="form-control input-lg" placeholder="cpf"/>
+                <label>CPF</label>
+                <input type="text" name="cpf" id="cpf" class="form-control" placeholder="cpf"/>
             </div>
             <div class="form-group">
                 <label for="">Senha</label>
@@ -51,9 +51,11 @@ require_once ('../config.php');
             por correio eletronico ou mensagem de celular. </p>
     </div>
 </div>
-<script src="<?php echo $base_url ?>/admin/js/jquery.min.js"></script>
+<script src="<?php echo $base_url ?>/publico/js/jquery.min.js"></script>
 <script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrapValidator.js"></script>
 <script src="<?php echo $base_url ?>/admin/js/login.js"></script>
 <script src="<?php echo $base_url ?>/admin/js/funcoes.js"></script>
+
 </body>
 </html>
