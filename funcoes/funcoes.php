@@ -35,3 +35,26 @@ function limitarCaracter( $frase, $limite )
     }
     return utf8_encode( $novaFrase );
 }
+
+function valida_cpf( $cpf )
+{
+    $cpf       = str_pad(str_replace(array('.','-','/'),'',$cpf),11,'0',STR_PAD_LEFT);
+    $invalidos = array( '00000000000', '11111111111', '22222222222',
+                        '33333333333', '44444444444', '55555555555',
+                        '66666666666', '77777777777', '88888888888', '99999999999' );
+
+    if(strlen($cpf) != 11 || in_array($cpf,$invalidos)){
+        return false;
+    }else{   // Calcula os números para verificar se o CPF é verdadeiro
+        for($t = 9; $t < 11; $t++){
+            for($d = 0, $c = 0; $c < $t; $c++){
+                $d += $cpf{$c} * (($t + 1) - $c);
+            }
+            $d = ((10 * $d) % 11) % 10;
+            if($cpf{$c} != $d){
+                return false;
+            }
+        }
+        return true;
+    }
+}

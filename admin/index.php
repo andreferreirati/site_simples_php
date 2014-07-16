@@ -29,7 +29,7 @@ require_once ('../config.php');
         <h2>Área restrita</h2>
         <div class="msgRetorno"></div>
         <form action="" class="form" method="post" name="form_login" id="defaultForm">
-            <div class="form-group">
+            <div class="form-group" id="divSenha">
                 <label>CPF</label>
                 <input type="text" name="cpf" id="cpf" class="form-control" placeholder="cpf"/>
             </div>

@@ -15,7 +15,7 @@ $(document).ready(function() {
             cpf: {
                 validators: {
                     notEmpty: { message: 'Este campo é obrigatório. Favor informar o CPF.' },
-                    digits:{ message: 'Este campo somente aceita valores númericos.' }
+                    digits:{ message: 'Este campo somente aceita valores númericos. Ex: 21267811862' }
                 }
             },
             senha: {
@@ -42,7 +42,12 @@ $(document).ready(function() {
                     $( load).fadeOut( 'slow', function(){
                         btnLogar.attr( 'disabled', false );
                     } );
-                    console.log(data);
+
+                    if( data == 'cpf_invalido' ) {
+                        msg( 'o CPF informado não é valido', 'erro');
+                        $( '#divSenha' ).addClass( 'form-group has-feedback has-error');
+                        $( '#divSenha > i').addClass( 'form-control-feedback glyphicon glyphicon-remove' );
+                    }
                 }
             } );
         } );
