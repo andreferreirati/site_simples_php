@@ -59,9 +59,8 @@ $(document).ready(function() {
                         formulario.fadeOut( 'fast', function() {
                             msg( 'Logado com sucesso!!. Aguarde até ser redirecionado para a administração', 'sucesso' );
                         } );
-
                         setTimeout( function() {
-                            $(location).attr( 'href', 'painel/' );
+                            $(location).attr( 'href', base_url_js + '/painel/' );
                         }, 3000 );
 
                     }

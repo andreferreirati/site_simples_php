@@ -54,6 +54,30 @@ class Login extends LoginModels
     }
 
 
+    /**
+     * Função que verifica se existe um usuario logado no sistema
+     * Caso não encontre a sessão o sistema redireciona para o index do admin
+     * @param $session
+     */
+    public static function verificaLogadoSistema( $session )
+    {
+        if( !isset( $_SESSION[$session] ) ) {
+            header( 'Location: ../' );
+        }
+    }
+
+    /**
+     * Função para sair da aplicação
+     * @param $session
+     */
+    public static function deslogarSistema( $session )
+    {
+        if( isset( $_SESSION[$session] ) ) {
+            session_destroy();
+            header( 'Location: ../admin' );
+        }
+    }
+
     public function imprime()
     {
         echo 'Estou no controllador Login !!000!';
