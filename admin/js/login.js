@@ -39,6 +39,7 @@ $(document).ready(function() {
                     $( load).fadeIn( 'slow' );
                 },
                 success: function( data ) {
+                    console.log(data);
                     $( load).fadeOut( 'slow', function(){
                         btnLogar.attr( 'disabled', false );
                     } );
@@ -47,6 +48,15 @@ $(document).ready(function() {
                         msg( 'o CPF informado não é valido', 'erro');
                         $( '#divSenha' ).addClass( 'form-group has-feedback has-error');
                         $( '#divSenha > i').addClass( 'form-control-feedback glyphicon glyphicon-remove' );
+                    }
+                    else if( data == 'naohabilitado' ) {
+                        msg( 'Usuário inabilitado para acesso ao sistema. Favor contatar ao administrador do portal', 'alerta' );
+                    }
+                    else if( data == 'usuario_ou_senha_invalido' ) {
+                        msg( 'Usuário ou senha inválidos, favor tente novamente', 'erro' );
+                    }
+                    else if( data == 'logadoComSucesso' ) {
+                        msg( 'Logado com sucesso!!. Aguarde até ser redirecionado para a administração', 'sucesso' );
                     }
                 }
             } );

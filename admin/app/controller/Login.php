@@ -18,10 +18,39 @@ use admin\app\models\LoginModels;
 class Login extends LoginModels
 {
 
+    /**
+     * Função logarController
+     * Ela usa o bcrypt para geração da senha,
+     * @param $cpf
+     * @param $senha
+     * @param $conn
+     * @return bool
+     */
     public function logarController( $cpf, $senha, $conn )
     {
+
+        $options = [
+            'salt' => 'Esta senha foi gerada pelo sistema Sites de noticias internamente',
+            'cost' => 10
+        ];
+        $senha  = password_hash( $senha, PASSWORD_DEFAULT, $options );
+
         $dadosUsuario = parent::logarModels( $cpf, $senha, $conn );
-        echo '<pre>'.__FILE__.': '.__LINE__.'<hr>';print_r($dadosUsuario);echo'<hr></pre>';
+
+        if( $dadosUsuario ) {
+
+            if( $dadosUsuario['sit_cancelado'] == '1' ) {
+                $_SESSION['usuario_logado'] = true;
+                $_SESSION['nome_usuario']   = $dadosUsuario['nome_usuario'];
+                $_SESSION['cpf_usuario']    = $dadosUsuario['cpf_usuario'];
+                return true;
+            } else {
+                echo 'naohabilitado';
+            }//endif
+
+        } else{
+            echo 'usuario_ou_senha_invalido';
+        }//end if
     }
 
     public function imprime()

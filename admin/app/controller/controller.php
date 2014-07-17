@@ -26,10 +26,11 @@ if( valida_cpf( $cpf ) ){
         case 'login':
 
             $dadasUsuario = new Login();
-
-            echo '<pre>'.__FILE__.': '.__LINE__.'<hr>';print_r($dadasUsuario->logarController($cpf, $senha, $conn));echo'<hr></pre>';
+            $resultado    =  $dadasUsuario->logarController($cpf, $senha, $conn);
+            if( $resultado ) {
+                echo 'logadoComSucesso';
+            }
             break;
-
 
     endswitch;
 

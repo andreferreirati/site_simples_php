@@ -10,6 +10,8 @@
  * Copyright: 2014
  */
 
+session_start();
+
 $root     = $_SERVER['DOCUMENT_ROOT'];
 $strHttp  = ( isset( $_SERVER['HTTPS'] ) ) ? "https://" : "http://";
 
