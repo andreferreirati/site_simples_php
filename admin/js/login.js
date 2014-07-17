@@ -56,7 +56,14 @@ $(document).ready(function() {
                         msg( 'Usuário ou senha inválidos, favor tente novamente', 'erro' );
                     }
                     else if( data == 'logadoComSucesso' ) {
-                        msg( 'Logado com sucesso!!. Aguarde até ser redirecionado para a administração', 'sucesso' );
+                        formulario.fadeOut( 'fast', function() {
+                            msg( 'Logado com sucesso!!. Aguarde até ser redirecionado para a administração', 'sucesso' );
+                        } );
+
+                        setTimeout( function() {
+                            $(location).attr( 'href', 'painel/' );
+                        }, 3000 );
+
                     }
                 }
             } );
