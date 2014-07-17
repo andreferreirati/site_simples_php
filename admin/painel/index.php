@@ -13,9 +13,6 @@
 require_once ('../../config.php');
 //Verifica se existe um usuário logado no sistema
 \admin\app\controller\Login::verificaLogadoSistema('usuario_logado');
-echo'<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">';
-echo '<pre>'.__FILE__.': '.__LINE__.'<hr>';print_r($_REQUEST);echo'<hr></pre>';
-echo '</div>';
 
 if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
     \admin\app\controller\Login::deslogarSistema('usuario_logado');
