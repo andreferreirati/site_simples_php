@@ -31,6 +31,7 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
     <title>Administração</title>
     <link href="<?php echo $base_url ?>/publico/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo $base_url ?>/publico/bootstrap/css/dashboard.css" rel="stylesheet">
+    <link href="<?php echo $base_url ?>/publico/bootstrap/css/bootstrap-dialog.min.css" rel="stylesheet">
     <link href="<?php echo $base_url ?>/admin/css/painelAdmin.css" rel="stylesheet">
   </head>
 
@@ -114,6 +115,6 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
     <script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrapValidator.js"></script>
     <script src="<?php echo $base_url ?>/admin/js/painel.js"></script>
     <script src="<?php echo $base_url ?>/admin/js/funcoes.js"></script>
-    <script src="<?php echo $base_url ?>/admin/js/bootbox.js"></script>
+    <script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrap-dialog.min.js"></script>
   </body>
 </html>

@@ -107,7 +107,7 @@ $(document).ready(function() {
     tbody.on( 'click', '#btnDeletarCliente', function(e) {
         e.preventDefault();
         var idCliente = $(this).attr( 'data-id' );
-        bootbox.confirm( "Realmente deseja deletar este registro?", function(result) {
+        BootstrapDialog.confirm( "Realmente deseja deletar este registro?", function(result) {
             if ( result === true ) {
                 $.post( host + "/app/controller/controller.php", {acao:'deletarCliente',idCliente:idCliente}).done( function( data ){
                     if( data == 'clienteDeletadoSucesso' ) {
