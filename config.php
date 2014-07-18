@@ -35,3 +35,4 @@ switch( $_SERVER['SERVER_NAME'] )
 require_once( 'autoload.php' );
 require_once( 'funcoes/conexao.php' );
 require_once( 'funcoes/funcoes.php' );
+require_once( 'admin/app/funcoes/funcoesAdmin.php' );

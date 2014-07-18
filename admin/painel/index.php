@@ -1,6 +1,6 @@
 <?php
 /**
- * File: index.php
+ * File: painel/index.php
  * Author: Luis Alberto Concha Curay
  * E-mail: luvett11@gmail.com
  * Language: 
@@ -11,6 +11,7 @@
  */
 
 require_once ('../../config.php');
+
 //Verifica se existe um usuário logado no sistema
 \admin\app\controller\Login::verificaLogadoSistema('usuario_logado');
 
@@ -88,9 +89,9 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
               <li><a href="#">Alterar</a></li>
           </ul>
           <ul class="nav navbar-link">
-              <li class="nav-header"><i class="glyphicon glyphicon-globe"></i> Páginas</a></li>
-              <li><a href="#">Pesquisar</a></li>
-              <li><a href="#">Cadastrar</a></li>
+              <li class="nav-header"><i class="glyphicon glyphicon-globe"></i> Clientes</a></li>
+              <li><a href="clientes">Listar</a></li>
+              <li><a href="clientesCadastrar">Cadastrar</a></li>
               <li><a href="#">Alterar</a></li>
           </ul>
         </div>
@@ -99,7 +100,7 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
               <span class="txtDadosColaborador">Colaborador:</span> <?php echo $_SESSION['nome_usuario']; ?> - <span class="txtDadosColaborador">CPF: </span><?php echo $_SESSION['cpf_usuario']; ?>
           </h5>
           <div class="table-responsive">
-
+                <?php \admin\app\controller\UrlAdmin::verificaUrlAdmin( paginaRequisitadaAdmin() ) ?>
           </div>
         </div>
       </div>
@@ -110,5 +111,9 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="<?php echo $base_url ?>/publico/js/jquery.min.js"></script>
     <script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrapValidator.js"></script>
+    <script src="<?php echo $base_url ?>/admin/js/painel.js"></script>
+    <script src="<?php echo $base_url ?>/admin/js/funcoes.js"></script>
+    <script src="<?php echo $base_url ?>/admin/js/bootbox.js"></script>
   </body>
 </html>
