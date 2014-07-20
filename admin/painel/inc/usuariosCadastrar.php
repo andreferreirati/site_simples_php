@@ -57,7 +57,7 @@
     <div class="form-group">
         <div class="col-sm-5 col-lg-offset-3">
             <button type="submit" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-pencil"> Cadastrar dados</span>
-                <img src="<?php echo $base_url ?>/admin/images/loader.gif" class="load" alt="Alterando dados" style="display: none;"/>
+                <img src="<?php echo $base_url ?>/admin/images/loader2.gif" class="load" alt="Alterando dados" style="display: none;"/>
             </button>
             <a href="?p=usuarios"  class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-arrow-left"> Voltar</span></a>
         </div>

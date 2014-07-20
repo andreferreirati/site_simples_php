@@ -23,6 +23,12 @@ class Usuario extends UsuarioModels
         return ( $dadosUsuario ) ? $dadosUsuario : false;
     }
 
+    public function procuraUsuarioPorCpf( $cpfUsuario )
+    {
+        $dadosUsuario = parent::procuraUsuarioPorCpf( $cpfUsuario );
+        return ( $dadosUsuario ) ? $dadosUsuario : false;
+    }
+
     public function cadastrarUsuario( array $dadosUsuario )
     {
         $dadosUsuario['senha_usuario'] = $this->converteSenha( $dadosUsuario['senha_usuario'] );

@@ -22,19 +22,34 @@ class UsuarioModels
         $this->conexao = conecta();
     }
 
-    public function procuraUsuarioPorId( $idCliente )
+    public function procuraUsuarioPorId( $idUsuario )
     {
         try{
             $pdo       = $this->conexao;
             $sql       = "SELECT * FROM tbl_usuarios WHERE id_usuario = :id";
             $stmt      = $pdo->prepare( $sql );
-            $stmt->bindParam( ':id', $idCliente, \PDO::PARAM_INT );
+            $stmt->bindParam( ':id', $idUsuario, \PDO::PARAM_INT );
             $stmt->execute();
             return $usuario   = $stmt->fetch(\PDO::FETCH_ASSOC);
         }catch ( \PDOException $e ){
             echo $e->getMessage();
         }
     }
+
+    public function procuraUsuarioPorCpf( $cpfUsuario )
+    {
+        try{
+            $pdo = $this->conexao;
+            $sql =  "SELECT id_usuario, nome_usuario, cpf_usuario, dat_cadastro, sit_cancelado FROM tbl_usuarios WHERE cpf_usuario = :cpf_usuario ";
+            $stmt = $pdo->prepare( $sql );
+            $stmt->bindParam( ':cpf_usuario', $cpfUsuario, \PDO::PARAM_STR );
+            $stmt->execute();
+            return $usuario = $stmt->fetch( \PDO::FETCH_ASSOC );
+        }catch ( \PDOException $e ) {
+            echo $e->getMessage();
+        }
+    }
+
 
     public function listarUsuarios()
     {

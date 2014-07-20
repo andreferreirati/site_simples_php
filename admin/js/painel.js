@@ -141,7 +141,8 @@ $(document).ready(function() {
             },
             cpfUsuario: {
                 validators: {
-                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o CPF do usuário!.' }
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o CPF do usuário!.' },
+                    digits:{ message: 'Este campo somente aceita valores númericos. Ex: 21267811862' }
                 }
             },
             senhaUsuario: {
@@ -204,9 +205,11 @@ $(document).ready(function() {
                         msg( 'O CPF informado não é valido. Favor verificar', 'erro');
                         $( '#divCPF' ).addClass( 'has-error');
                         $( '#divCPF > i').addClass( 'glyphicon glyphicon-remove' );
+                    }else if( data == 'cpfExiste' ) {
+                        msg( 'Já existe um cpf cadastrado com esse numero', 'erro' );
+                        $( '#divCPF' ).addClass( 'has-error');
+                        $( '#divCPF > i').addClass( 'glyphicon glyphicon-remove' );
                     }
-
-                    console.log( data );
                 }
             } );
         } );
@@ -226,7 +229,8 @@ $(document).ready(function() {
             },
             cpfUsuario: {
                 validators: {
-                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o CPF do usuário!.' }
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o CPF do usuário!.' },
+                    digits:{ message: 'Este campo somente aceita valores númericos. Ex: 21267811862' }
                 }
             },
             senhaUsuario: {
@@ -278,20 +282,18 @@ $(document).ready(function() {
                         btnCadastrarUsuario.attr( 'disabled', false );
                     } );
 
-                    if( data == 'usuarioCadastradoSucesso' ) {
-                        msg( 'Usuario cadastrado com sucesso!!', 'sucesso' );
+                    if( data == 'usuarioAtualizadoSucesso' ) {
+                        msg( 'Usuario alterado com sucesso!!', 'sucesso' );
                         setTimeout(function(){
                             document.location.href = host + "/admin/painel/?p=usuarios" ;
                         }, 2000);
-                    }else if( data == 'erroCadastroUsuario' ) {
-                        msg( 'Erro ao tentar cadastrar os dados do usuário!', 'erro');
+                    }else if( data == 'erroAtualizarUsuario' ) {
+                        msg( 'Erro ao tentar atualizar os dados do usuário!', 'erro');
                     }else if( data == 'cpf_invalido' ) {
                         msg( 'O CPF informado não é valido. Favor verificar', 'erro');
                         $( '#divCPF' ).addClass( 'has-error');
                         $( '#divCPF > i').addClass( 'glyphicon glyphicon-remove' );
                     }
-
-                    console.log( data );
                 }
             } );
         } );
