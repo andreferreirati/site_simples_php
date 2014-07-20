@@ -14,41 +14,6 @@ try {
 
     $pdo = conecta();
 
-    /** /
-    $verficarExistenciaTabela = fopen( 'sql/verificaTabela.sql', 'r' );
-    if( $verficarExistenciaTabela ) {
-        while( !feof( $verficarExistenciaTabela ) ) {
-            $stmt     = $pdo->prepare( fgets( $verficarExistenciaTabela ) );
-            $stmt->execute();
-            $resposta = $stmt->rowCount();
-        }//end while
-
-        if( $resposta < 1 ){
-            $scriptSql = fopen( 'sql/script2.sql', 'r' );
-            $contador  = 0;
-            if( $scriptSql ) {
-                //verifica se chegou a final do arquivo
-                while ( !feof( $scriptSql ) ) {
-                    $stmt     = $pdo->prepare( fgets( $scriptSql ) );
-                    $conteudo = $stmt->execute();
-                    $contador++;
-                }
-                fclose ( $scriptSql );
-
-                if( $conteudo ){
-                    echo '<h2 class="fixturSucces">O script sql foi executado com sucesso!! </h2>';
-                    echo '<h3 class="fixturSucces">Linhas SQL executadas: ' . $contador . '</h3>';
-                }else{
-                    echo '<h2 class="fixturError">houve um erro na execução do script SQL</h2>';
-                }//end if
-
-            }else {
-                echo '<h2 class="fixturError">Não foi possível abrir o arquivo script2.sql, <br />favor verificar o caminho na função <b>FOPEN</b></h2>';
-            }//end if
-        }//end if
-    }//end if
-    /**/
-
     try{
         $sql  = "SELECT tm.id_menu, tm.nome_menu, tm.href_menu, tm.hint_menu, tm.sit_cancelado FROM tbl_menu tm
              WHERE  tm.sit_cancelado = 'N'";
@@ -58,8 +23,6 @@ try {
         $menu = $stmt->fetchAll( PDO::FETCH_ASSOC);
         $pdo = null;
 ?>
-
-
         <!-- Fixed navbar -->
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -75,7 +38,7 @@ try {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <?php foreach( $menu as $m ) : ?>
-                            <li><a href="<?php echo $m['href_menu'] ?>" title="<?php echo utf8_encode( $m['hint_menu'] );?>"><?php echo utf8_encode( $m['nome_menu'] ); ?></a></li>
+                            <li><a href="<?php echo '?p='.$m['href_menu'] ?>" title="<?php echo utf8_encode( $m['hint_menu'] );?>"><?php echo utf8_encode( $m['nome_menu'] ); ?></a></li>
                         <?php endforeach; ?>
 
                     </ul>
@@ -83,6 +46,9 @@ try {
                         <input type="text" placeholder="Pesquisar" class="form-control" id="txtPesquisa" name="txtPesquisa">
                         <input type="submit" value="Pesquisar.."/>
                     </form>
+                    <ul class="nav navbar-nav">
+                        <a href="<?=$base_url?>/admin/painel" class="btn btn-warning">Administração</a>
+                    </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </div>

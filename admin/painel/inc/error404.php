@@ -13,7 +13,7 @@
 
 <div class="paginaErro">
     <h2>A página que você está procurando não existe ou esta indiponível.</h2>
-    <h3> Sugerimos ir para nossa <a href="home" title="Ir para página principal">página principal da administração</a>
+    <h3> Sugerimos ir para nossa <a href="?p=home" title="Ir para página principal">página principal da administração</a>
 
     </h3>
 </div>

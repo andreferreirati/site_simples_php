@@ -60,9 +60,10 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
                         <li><a href="#">Alterar senha</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Atualizar dados</a></li>
-                        <li><a href="/admin/painel?p=logout">Sair</a></li>
+                        <li><a href="?p=logout">Sair</a></li>
                     </ul>
                 </li>
+                <li><a class="navbar-brand" href="<?=$base_url?>" target="_blank">Visualizar site</a></li>
             </ul>
         </div>
       </div>
@@ -91,25 +92,22 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
           </ul>
           <ul class="nav navbar-link">
               <li class="nav-header"><i class="glyphicon glyphicon-globe"></i> Clientes</a></li>
-              <li><a href="clientes">Listar</a></li>
-              <li><a href="clientesCadastrar">Cadastrar</a></li>
-              <li><a href="#">Alterar</a></li>
+              <li><a href="?p=clientes">Listar</a></li>
+              <li><a href="?p=clientesCadastrar">Cadastrar</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h5  class="sub-header text-right">
               <span class="txtDadosColaborador">Colaborador:</span> <?php echo $_SESSION['nome_usuario']; ?> - <span class="txtDadosColaborador">CPF: </span><?php echo $_SESSION['cpf_usuario']; ?>
           </h5>
-          <div class="table-responsive">
-                <?php \admin\app\controller\UrlAdmin::verificaUrlAdmin( paginaRequisitadaAdmin() ) ?>
-          </div>
+            <div class="table-responsive">
+                <?php isset( $_GET['p'] ) ? \admin\app\controller\UrlAdmin::pegaPaginaExistente( $_GET['p'] ) : require_once 'inc/home.php' ?>
+            </div>
         </div>
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+
     <script src="<?php echo $base_url ?>/publico/js/jquery.min.js"></script>
     <script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo $base_url ?>/publico/bootstrap/js/bootstrapValidator.js"></script>

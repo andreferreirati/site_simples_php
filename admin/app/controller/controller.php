@@ -33,7 +33,7 @@ switch( $acao ) :
         }else{
             echo 'cpf_invalido';
         }
-    break;
+        break;
 
     case 'alterarCliente':
         $idCliente    = filter_input( INPUT_POST, 'idCliente', FILTER_SANITIZE_NUMBER_INT );

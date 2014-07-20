@@ -15,8 +15,9 @@ session_start();
 $root     = $_SERVER['DOCUMENT_ROOT'];
 $strHttp  = ( isset( $_SERVER['HTTPS'] ) ) ? "https://" : "http://";
 
-const APP_HOST_DEV    = 'site_simples.localhost' ;
-const APP_HOST_DEV_IP = '127.0.0.1';
+const APP_HOST_DEV      = 'site_simples.localhost' ;
+const APP_HOST_DEV_IP   = '127.0.0.1';
+const APP_HOST_PRODUCAO = 'url_da_pagina_em_producao';
 
 //Verifica qual ambiente esta sendo executada a aplicação
 //para poder abrir o sistema corretamente
@@ -29,6 +30,9 @@ switch( $_SERVER['SERVER_NAME'] )
         break;
     case APP_HOST_DEV_IP:
         $base_url = $strHttp . APP_HOST_DEV_IP . ':' .$_SERVER['SERVER_PORT'];
+        break;
+    case APP_HOST_PRODUCAO:
+        $base_url = $strHttp . APP_HOST_PRODUCAO .DIRECTORY_SEPARATOR . 'site_simples';
         break;
 }
 

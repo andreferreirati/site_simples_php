@@ -30,7 +30,7 @@ $listaClientes = $clientes->listarClientes();
                 <td><?php echo $cli['nome_cliente']; ?></td>
                 <td><?php echo $cli['email_cliente']; ?></td>
                 <td>
-                    <a href="clientesAlterar?id=<?php echo $cli['id_cliente']; ?>"><button class="btn btn-info">Alterar</button></a>
+                    <a href="?p=clientesAlterar&id=<?php echo $cli['id_cliente']; ?>"><button class="btn btn-info">Alterar</button></a>
                     <button class="btn btn-danger" id="btnDeletarCliente" data-id="<?php echo $cli['id_cliente']; ?>" >Deletar </button>
                 </td>
             </tr>
@@ -39,7 +39,7 @@ $listaClientes = $clientes->listarClientes();
     </table>
 
     <p>
-        <a href="clientesCadastrar"><button class="btn btn-large btn-warning" type="button">Novo usuário</button></a>
+        <a href="?p=clientesCadastrar"><button class="btn btn-large btn-warning" type="button">Novo usuário</button></a>
     </p>
 
 </div>

@@ -16,31 +16,12 @@ namespace classes;
 class Url
 {
 
-    /** /
     public static function verificaUrl( $pagina )
     {
         if( isset( $pagina ) ) {
-            if( file_exists( 'inc/' .$pagina.'.php' ) ) {
-               require_once( 'inc/' .$pagina.'.php' );
-            }else {
-                require_once( 'inc/error404.php' );
-            }
-        } else {
-            require_once( 'inc/error404.php' );
-        }
-    }
-    /**/
-
-    public static function verificaUrl( $pagina )
-    {
-        if( isset( $pagina ) ) {
-
-            if( $pagina == '' ) {
-                require_once( 'inc/home.php' );
-            }
             if( file_exists( 'inc/' .$pagina.'.php' ) ) {
                 require_once( 'inc/' .$pagina.'.php' );
-            }elseif( $pagina <> '' ){
+            }else {
                 require_once( 'inc/error404.php' );
             }
         } else {

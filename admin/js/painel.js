@@ -4,7 +4,7 @@ $(document).ready(function() {
     var tbody           = row.find( 'tbody' );
 
     var direccion  = window.location;
-    var host       = direccion.protocol + "//" + direccion.host + "/" + direccion.pathname.split('/')[1];
+    var host       = direccion.protocol + "//" + direccion.host;
 
     $('#frmCadastrarClientes').bootstrapValidator({
         message: 'Este valor não é válido',
@@ -32,7 +32,7 @@ $(document).ready(function() {
             var btnCadastrar = formulario.find(':button');
             var load         = formulario.find('.load');
             $.ajax( {
-                url: host + "/app/controller/controller.php",
+                url: host + "/admin/app/controller/controller.php",
                 type:"POST",
                 data: "acao=CadastrarCliente&" + formulario.serialize(),
                 beforeSend: function(){
@@ -47,7 +47,7 @@ $(document).ready(function() {
                     if( data == 'clienteCadastradoSucesso' ) {
                         msg( 'Cliente cadastrado com sucesso!!', 'sucesso' );
                         setTimeout(function(){
-                            document.location.href = host + "/painel/clientes" ;
+                            document.location.href = host + "/admin/painel/?p=clientes" ;
                         }, 2000);
                     }else if( data == 'erroCadastrarCliente' ) {
                         msg( 'Erro ao tentar cadastrar os dados do cliente!', 'erro');
@@ -83,7 +83,7 @@ $(document).ready(function() {
             var btnAlterar = formulario.find(':button');
             var load       = formulario.find('.load');
             $.ajax( {
-                url: host + "/app/controller/controller.php",
+                url: host + "/admin/app/controller/controller.php",
                 type:"POST",
                 data: "acao=alterarCliente&" + formulario.serialize(),
                 beforeSend: function(){
@@ -91,6 +91,7 @@ $(document).ready(function() {
                     $( load).fadeIn( 'slow' );
                 },
                 success: function( data ) {
+                    console.log(data);
                     $( load).fadeOut( 'slow', function(){
                         btnAlterar.attr( 'disabled', false );
                     } );
@@ -109,12 +110,12 @@ $(document).ready(function() {
         var idCliente = $(this).attr( 'data-id' );
         BootstrapDialog.confirm( "Realmente deseja deletar este registro?", function(result) {
             if ( result === true ) {
-                $.post( host + "/app/controller/controller.php", {acao:'deletarCliente',idCliente:idCliente}).done( function( data ){
+                $.post( host + "/admin/app/controller/controller.php", {acao:'deletarCliente',idCliente:idCliente}).done( function( data ){
                     if( data == 'clienteDeletadoSucesso' ) {
                         msg( 'Registro deletado com sucesso!!', 'sucesso' );
                         setTimeout(function(){
-                            document.location.href = host + "/painel/clientes" ;
-                        }, 2000);
+                            document.location.href = host + "/admin/painel/?p=clientes" ;
+                        }, 1000);
                     }else if( data == 'erroDeletarCliente' ) {
                         msg( 'Erro ao tentar deletar o registro!', 'erro');
                     }
