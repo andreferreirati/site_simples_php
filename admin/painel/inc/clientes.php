@@ -14,7 +14,7 @@ $clientes      = new \admin\app\controller\Cliente();
 $listaClientes = $clientes->listarClientes();
 
 ?>
-<div class="span10" id="tblClientes">
+<div class="span10 table-responsive" id="tblClientes">
     <h1>Clientes cadastrados</h1>
     <div class="msgRetorno"></div>
     <table class="table table-striped">

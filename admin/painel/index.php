@@ -99,7 +99,7 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
           <h5  class="sub-header text-right">
               <span class="txtDadosColaborador">Colaborador:</span> <?php echo $_SESSION['nome_usuario']; ?> - <span class="txtDadosColaborador">CPF: </span><?php echo $_SESSION['cpf_usuario']; ?>
           </h5>
-            <div class="table-responsive">
+            <div class="container">
                 <?php isset( $_GET['p'] ) ? \admin\app\controller\UrlAdmin::pegaPaginaExistente( $_GET['p'] ) : require_once 'inc/home.php' ?>
             </div>
         </div>

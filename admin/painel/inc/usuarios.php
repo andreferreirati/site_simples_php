@@ -14,7 +14,7 @@ $usuarios      = new \admin\app\controller\Usuario();
 $listaUsuarios = $usuarios->listarUsuarios();
 
 ?>
-<div class="span10" id="tblClientes">
+<div class="span10 table-responsive" id="tblClientes">
     <h1>Clientes cadastrados</h1>
     <div class="msgRetorno"></div>
     <table class="table table-striped">

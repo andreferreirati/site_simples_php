@@ -32,15 +32,15 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-lg-3 control-label">Senha:</label>
-        <div class="col-lg-3">
+        <label class="control-label col-sm-3" for="inputSuccess3">Senha:</label>
+        <div class="col-lg-2">
             <input type="password" class="form-control" name="senhaUsuario" />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-lg-3 control-label">Repita a senha:</label>
-        <div class="col-lg-3">
+        <label class="control-label col-sm-3" for="inputSuccess3">Repita a senha:</label>
+        <div class="col-lg-2">
             <input type="password" class="form-control" name="confirmaSenhaUsuario" />
         </div>
     </div>
