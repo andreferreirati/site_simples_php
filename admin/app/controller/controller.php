@@ -80,6 +80,64 @@ switch( $acao ) :
         }
         break;
 
+    case 'CadastrarUsuario':
+        $cpfUsuario   = filter_input( INPUT_POST, 'cpfUsuario', FILTER_SANITIZE_STRING );
+        if( valida_cpf( $cpfUsuario ) ){
+            $nomeUsuario   = filter_input( INPUT_POST, 'nomeUsuario', FILTER_SANITIZE_STRING );
+            $senhaUsuario  = filter_input( INPUT_POST, 'senhaUsuario', FILTER_SANITIZE_STRING );
+            $data_cadastro = date( 'Y-m-d H:i:s' );
+            $sit_cancelado = filter_input( INPUT_POST, 'sit_cancelado' );
+            $dadosUsuario  = array(
+                'nome_usuario'  => $nomeUsuario,
+                'cpf_usuario'   => $cpfUsuario,
+                'senha_usuario' => $senhaUsuario,
+                'dat_cadastro'  => $data_cadastro,
+                'sit_cancelado' => $sit_cancelado
+            );
+            $usuario          = new Usuario();
+            $cadastrarUsuario = $usuario->cadastrarUsuario( $dadosUsuario );
+            if( $cadastrarUsuario ) {
+                echo 'usuarioCadastradoSucesso';
+            }else{
+                echo 'erroCadastroUsuario';
+            }
+        }else{
+            echo 'cpf_invalido';
+        }
+        break;
+
+    case 'deletarUsuario':
+        $idUsuario      = filter_input( INPUT_POST, 'idUsuario', FILTER_SANITIZE_NUMBER_INT );
+        $usuario        = new Usuario();
+        $deletarUsuario = $usuario->deletarUsuario( $idUsuario );
+        if( $deletarUsuario ) {
+            echo 'usuarioDeletadoSucesso';
+        }else {
+            echo 'erroDeletarUsuario';
+        }
+        break;
+
+    case 'alterarUsuario':
+        $idUsuario     = filter_input( INPUT_POST, 'idUsuario', FILTER_SANITIZE_NUMBER_INT );
+        $nomeUsuario   = filter_input( INPUT_POST, 'nomeUsuario', FILTER_SANITIZE_STRING );
+        $cpfUsuario    = filter_input( INPUT_POST, 'cpfUsuario', FILTER_SANITIZE_STRING );
+        $senhaUsuario  = filter_input( INPUT_POST, 'senhaUsuario', FILTER_SANITIZE_STRING );
+        $sit_cancelado = filter_input( INPUT_POST, 'idUsuario', FILTER_SANITIZE_STRING );
+        $dadosUsuario  = array(
+            'id_usuario'   => $idUsuario,
+            'nome_usuario' => $nomeUsuario,
+            'cpf_usuario'  => $cpfUsuario,
+            'senha_usuario'=> $senhaUsuario,
+            'sit_cancelado'=> $sit_cancelado,
+        );
+        $usuario       = new Usuario();
+        $updateUsuario = $usuario->alterarUsuario( $dadosUsuario );
+        if( $updateUsuario ) {
+            echo 'usuarioAtualizadoSucesso';
+        }else {
+            echo 'erroAtualizarUsuario';
+        }
+        break;
 endswitch;
 
 

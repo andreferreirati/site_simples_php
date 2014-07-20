@@ -74,9 +74,8 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav navbar-link">
             <li class="nav-header"><i class="glyphicon glyphicon-user"></i> Usuários</a></li>
-              <li><a href="#">Pesquisar</a></li>
-              <li><a href="#">Cadastrar</a></li>
-              <li><a href="#">Alterar</a></li>
+              <li><a href="?p=usuarios">Listar</a></li>
+              <li><a href="?p=usuariosCadastrar">Cadastrar</a></li>
           </ul>
           <ul class="nav navbar-link">
               <li class="nav-header"><i class="glyphicon glyphicon-file"></i> Páginas</a></li>

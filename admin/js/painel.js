@@ -124,4 +124,197 @@ $(document).ready(function() {
             }
         } );
     } );
+
+    // =============== Usuarios ======================
+    $('#frmCadastrarUsuario').bootstrapValidator({
+        message: 'Este valor não é válido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            nomeUsuario: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o nome do usuário!.' }
+                }
+            },
+            cpfUsuario: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o CPF do usuário!.' }
+                }
+            },
+            senhaUsuario: {
+                validators: {
+                    notEmpty: {
+                        message: 'Este campo é obrigatório. Favor informar a senha.'
+                    },
+                    identical: {
+                        field: 'confirmaSenhaUsuario',
+                        message: 'A senha e a confirmação da senha não são iguais, favor verificar'
+                    }
+                }
+            },
+            confirmaSenhaUsuario: {
+                validators: {
+                    notEmpty: {
+                        message: 'Este campo é obrigatório. Favor informar a confirmação da senha'
+                    },
+                    identical: {
+                        field: 'senhaUsuario',
+                        message: 'A senha e a confirmação da senha não são iguais, favor verificar'
+                    }
+                }
+            },
+            sit_cancelado:{
+                validators: {
+                    notEmpty: {
+                        message: 'Por favor informe a situação do usuario.'
+                    }
+                }
+            }
+        }
+    })
+        .on( 'success.form.bv', function( event ){
+            event.preventDefault();
+            var formularioCadUsuario  = $( event.target );
+            var btnCadastrarUsuario   = formularioCadUsuario.find(':button');
+            var load                  = formularioCadUsuario.find('.load');
+            $.ajax( {
+                url: host + "/admin/app/controller/controller.php",
+                type:"POST",
+                data: "acao=CadastrarUsuario&" + formularioCadUsuario.serialize(),
+                beforeSend: function(){
+                    btnCadastrarUsuario.attr( 'disabled', true );
+                    $( load).fadeIn( 'slow' );
+                },
+                success: function( data ) {
+                    $( load).fadeOut( 'slow', function(){
+                        btnCadastrarUsuario.attr( 'disabled', false );
+                    } );
+
+                    if( data == 'usuarioCadastradoSucesso' ) {
+                        msg( 'Usuario cadastrado com sucesso!!', 'sucesso' );
+                        setTimeout(function(){
+                            document.location.href = host + "/admin/painel/?p=usuarios" ;
+                        }, 2000);
+                    }else if( data == 'erroCadastroUsuario' ) {
+                        msg( 'Erro ao tentar cadastrar os dados do usuário!', 'erro');
+                    }else if( data == 'cpf_invalido' ) {
+                        msg( 'O CPF informado não é valido. Favor verificar', 'erro');
+                        $( '#divCPF' ).addClass( 'has-error');
+                        $( '#divCPF > i').addClass( 'glyphicon glyphicon-remove' );
+                    }
+
+                    console.log( data );
+                }
+            } );
+        } );
+
+    $('#frmAlterarUsuarios').bootstrapValidator({
+        message: 'Este valor não é válido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            nomeUsuario: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o nome do usuário!.' }
+                }
+            },
+            cpfUsuario: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o CPF do usuário!.' }
+                }
+            },
+            senhaUsuario: {
+                validators: {
+                    notEmpty: {
+                        message: 'Este campo é obrigatório. Favor informar a senha.'
+                    },
+                    identical: {
+                        field: 'confirmaSenhaUsuario',
+                        message: 'A senha e a confirmação da senha não são iguais, favor verificar'
+                    }
+                }
+            },
+            confirmaSenhaUsuario: {
+                validators: {
+                    notEmpty: {
+                        message: 'Este campo é obrigatório. Favor informar a confirmação da senha'
+                    },
+                    identical: {
+                        field: 'senhaUsuario',
+                        message: 'A senha e a confirmação da senha não são iguais, favor verificar'
+                    }
+                }
+            },
+            sit_cancelado:{
+                validators: {
+                    notEmpty: {
+                        message: 'Por favor informe a situação do usuario.'
+                    }
+                }
+            }
+        }
+    })
+        .on( 'success.form.bv', function( event ){
+            event.preventDefault();
+            var formularioCadUsuario  = $( event.target );
+            var btnCadastrarUsuario   = formularioCadUsuario.find(':button');
+            var load                  = formularioCadUsuario.find('.load');
+            $.ajax( {
+                url: host + "/admin/app/controller/controller.php",
+                type:"POST",
+                data: "acao=alterarUsuario&" + formularioCadUsuario.serialize(),
+                beforeSend: function(){
+                    btnCadastrarUsuario.attr( 'disabled', true );
+                    $( load).fadeIn( 'slow' );
+                },
+                success: function( data ) {
+                    $( load).fadeOut( 'slow', function(){
+                        btnCadastrarUsuario.attr( 'disabled', false );
+                    } );
+
+                    if( data == 'usuarioCadastradoSucesso' ) {
+                        msg( 'Usuario cadastrado com sucesso!!', 'sucesso' );
+                        setTimeout(function(){
+                            document.location.href = host + "/admin/painel/?p=usuarios" ;
+                        }, 2000);
+                    }else if( data == 'erroCadastroUsuario' ) {
+                        msg( 'Erro ao tentar cadastrar os dados do usuário!', 'erro');
+                    }else if( data == 'cpf_invalido' ) {
+                        msg( 'O CPF informado não é valido. Favor verificar', 'erro');
+                        $( '#divCPF' ).addClass( 'has-error');
+                        $( '#divCPF > i').addClass( 'glyphicon glyphicon-remove' );
+                    }
+
+                    console.log( data );
+                }
+            } );
+        } );
+
+    tbody.on( 'click', '#btnDeletarUsuario', function(e) {
+        e.preventDefault();
+        var idUsuario = $(this).attr( 'data-id' );
+        BootstrapDialog.confirm( "Realmente deseja deletar este registro?", function(result) {
+            if ( result === true ) {
+                $.post( host + "/admin/app/controller/controller.php", {acao:'deletarUsuario',idUsuario:idUsuario}).done( function( data ){
+                    if( data == 'usuarioDeletadoSucesso' ) {
+                        msg( 'Registro deletado com sucesso!!', 'sucesso' );
+                        setTimeout(function(){
+                            document.location.href = host + "/admin/painel/?p=usuarios" ;
+                        }, 1000);
+                    }else if( data == 'erroDeletarUsuario' ) {
+                        msg( 'Erro ao tentar deletar o registro!', 'erro');
+                    }
+                    console.log( data )
+                } );
+            }
+        } );
+    } );
+
+
 });
