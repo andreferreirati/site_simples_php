@@ -161,3 +161,23 @@
 
 .container #aviso{ width: 50%; margin: 0 auto; padding: 10px 30px 0px 30px; text-align: center; color: #398439}
 .container #aviso span{font-weight: bold}
+
+@media (max-width: 768px) {
+    .container #aviso {
+        padding:14px 16px;
+        font-size:96%;
+        line-height: 1;
+        border-radius:3px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .container #aviso {
+        padding:14px 16px;
+        font-size:96%;
+        line-height: 1;
+        border-radius:3px;
+        width: 100%;
+    }
+}

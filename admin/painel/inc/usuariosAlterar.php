@@ -37,14 +37,14 @@ $res          = $dadosUsuario->procuraUsuarioPorId( $idUsuario );
         </div>
     </div>
     <div class="form-group">
-        <label class="col-lg-3 control-label">Senha:</label>
+        <label class="control-label col-sm-3" for="inputSuccess3">Senha:</label>
         <div class="col-lg-3">
             <input type="password" class="form-control" name="senhaUsuario" />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-lg-3 control-label">Repita a senha:</label>
+        <label class="control-label col-sm-3" for="inputSuccess3">Repita a senha:</label>
         <div class="col-lg-3">
             <input type="password" class="form-control" name="confirmaSenhaUsuario" />
         </div>
@@ -61,10 +61,10 @@ $res          = $dadosUsuario->procuraUsuarioPorId( $idUsuario );
     </div>
     <div class="form-group">
         <div class="col-sm-5 col-lg-offset-3">
-            <button type="submit" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-pencil"> Alterar dados</span>
+            <button type="submit" class="btn btn-primary btn-lg btn-responsive"><span class="glyphicon glyphicon-pencil"> Alterar dados</span>
                 <img src="<?php echo $base_url ?>/admin/images/loader2.gif" class="load" alt="Alterando dados" style="display: none;"/>
             </button>
-            <a href="?p=usuarios"  class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-arrow-left"> Voltar</span></a>
+            <a href="?p=usuarios"  class="btn btn-warning btn-lg btn-responsive"><span class="glyphicon glyphicon-arrow-left"> Voltar</span></a>
         </div>
     </div>
     <input type="hidden" name="idUsuario" value="<?=$res['id_usuario'] ?>"/>
