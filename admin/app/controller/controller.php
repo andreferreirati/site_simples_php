@@ -145,6 +145,44 @@ switch( $acao ) :
             echo 'erroAtualizarUsuario';
         }
         break;
+
+    case 'cadastrarConteudo':
+        $tituloConteudo = filter_input( INPUT_POST, 'titulo', FILTER_SANITIZE_STRING );
+        $conteudo       = filter_input( INPUT_POST, 'conteudo', FILTER_SANITIZE_MAGIC_QUOTES );
+        $slug           = filter_input( INPUT_POST, 'slug', FILTER_SANITIZE_STRING );
+        $dadosConteudo  = array(
+            'titulo_conteudo'  => $tituloConteudo,
+            'slug_conteudo'    => $slug,
+            'conteudo_conteudo'=> $conteudo
+        );
+        $pagConteudo = new Conteudo();
+        $cadastraConteudo = $pagConteudo->cadastrarConteudo( $dadosConteudo );
+        echo ( $cadastraConteudo ) ? 'conteudoCadastradoSucesso' : 'erroCadastroConteudo';
+        break;
+
+    case 'alterarConteudo':
+        $tituloConteudo = filter_input( INPUT_POST, 'titulo', FILTER_SANITIZE_STRING );
+        $conteudo       = filter_input( INPUT_POST, 'conteudo', FILTER_SANITIZE_MAGIC_QUOTES );
+        $slug           = filter_input( INPUT_POST, 'slug', FILTER_SANITIZE_STRING );
+        $idConteudo     = filter_input( INPUT_POST, 'id', FILTER_SANITIZE_STRING );
+        $dadosConteudo  = array(
+            'titulo_conteudo'  => $tituloConteudo,
+            'slug_conteudo'    => $slug,
+            'conteudo_conteudo'=> $conteudo,
+            'id'               => $idConteudo
+        );
+        $pagConteudo = new Conteudo();
+        $updateConteudo = $pagConteudo->alterarConteudo( $dadosConteudo );
+        echo  ( $updateConteudo ) ? 'conteudoAlteradoSucesso' : 'erroAlterarConteudo';
+        break;
+
+    case 'deletarConteudo':
+        $idConteudo     = filter_input( INPUT_POST, 'idConteudo', FILTER_SANITIZE_NUMBER_INT );
+        $pagConteudo    = new Conteudo();
+        $deletarConteudo = $pagConteudo->deletarConteudo( $idConteudo );
+        echo ( $deletarConteudo ) ? 'conteudoDeletadoSucesso' : 'erroDeletarConteudo';
+        break;
+        break;
 endswitch;
 
 

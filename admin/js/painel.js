@@ -312,11 +312,152 @@ $(document).ready(function() {
                     }else if( data == 'erroDeletarUsuario' ) {
                         msg( 'Erro ao tentar deletar o registro!', 'erro');
                     }
-                    console.log( data )
                 } );
             }
         } );
     } );
 
+    // =============== Conteudo ======================
+    $('#frmCadastrarConteudo').bootstrapValidator({
+        message: 'Este valor não é válido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            titulo: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o titulo!.' }
+                }
+            },
+            slug: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o slug!.' }
+                }
+            }
+        }
+    })
+        .on( 'success.form.bv', function( event ){
+            event.preventDefault();
+            var formulario   = $( event.target );
+            var titulo       = formulario.find('#titulo').val();
+            var slug         = formulario.find('#slug').val();
+            var conteudo     = tinyMCE.get('conteudo').getContent();
+            var btnCadastrar = formulario.find(':button');
+            var load         = formulario.find('.load');
+            if( conteudo == 0 ){
+                msg( 'Por favor informar o conteudo da pagina!', 'erro');
+                $( '#divConteudoTextearea iframe' ).css('border', '2px solid red');
+                btnCadastrar.attr( 'disabled', false );
+            }else{
+                $.ajax( {
+                    url: host + "/admin/app/controller/controller.php",
+                    type:"POST",
+                    data: "acao=cadastrarConteudo&" +"titulo="+titulo+"&slug="+slug+"&conteudo="+conteudo,
+                    beforeSend: function(){
+                        btnCadastrar.attr( 'disabled', true );
+                        $( load).fadeIn( 'slow' );
+                    },
+                    success: function( data ) {
+                        $( load).fadeOut( 'slow', function(){
+                            btnCadastrar.attr( 'disabled', false );
+                        } );
 
+                        if( data == 'conteudoCadastradoSucesso' ) {
+                            msg( 'Conteudo cadastrado com sucesso!!', 'sucesso' );
+                            setTimeout(function(){
+                                document.location.href = host + "/admin/painel/?p=conteudo" ;
+                            }, 2000);
+                        }else if( data == 'erroCadastroConteudo' ) {
+                            msg( 'Erro ao tentar cadastrar os dados do cliente!', 'erro');
+                        }
+
+                        console.log(data);
+                    }
+                } );
+            }
+        } );
+
+    $('#frmAlterarConteudo').bootstrapValidator({
+        message: 'Este valor não é válido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            titulo: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o titulo!.' }
+                }
+            },
+            slug: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o slug!.' }
+                }
+            }
+        }
+    })
+        .on( 'success.form.bv', function( event ){
+            event.preventDefault();
+            var formulario   = $( event.target );
+            var titulo       = formulario.find('#titulo').val();
+            var idConteudo   = formulario.find('#idConteudo').val();
+            var slug         = formulario.find('#slug').val();
+            var conteudo     = tinyMCE.get('conteudo').getContent();
+            var btnCadastrar = formulario.find(':button');
+            var load         = formulario.find('.load');
+            if( conteudo == 0 ){
+                msg( 'Por favor informar o conteudo da pagina!', 'erro');
+                $( '#divConteudoTextearea iframe' ).css('border', '2px solid red');
+                btnCadastrar.attr( 'disabled', false );
+            }else{
+                $.ajax( {
+                    url: host + "/admin/app/controller/controller.php",
+                    type:"POST",
+                    data: "acao=alterarConteudo&" +"titulo="+titulo+"&slug="+slug+"&conteudo="+conteudo+"&id="+idConteudo,
+                    beforeSend: function(){
+                        btnCadastrar.attr( 'disabled', true );
+                        $( load).fadeIn( 'slow' );
+                    },
+                    success: function( data ) {
+                        $( load).fadeOut( 'slow', function(){
+                            btnCadastrar.attr( 'disabled', false );
+                        } );
+
+                        if( data == 'conteudoAlteradoSucesso' ) {
+                            msg( 'Conteudo alterado com sucesso!!', 'sucesso' );
+                            setTimeout(function(){
+                                document.location.href = host + "/admin/painel/?p=conteudo" ;
+                            }, 2000);
+                        }else if( data == 'erroAlterarConteudo' ) {
+                            msg( 'Erro ao tentar alterar os dados do conteudo!', 'erro');
+                        }
+
+                        console.log(data);
+                    }
+                } );
+            }
+        } );
+
+    tbody.on( 'click', '#btnDeletarConteudo', function(e) {
+        e.preventDefault();
+        var idConteudo = $(this).attr( 'data-id' );
+        BootstrapDialog.confirm( "Realmente deseja deletar este registro?", function(result) {
+            if ( result === true ) {
+                $.post( host + "/admin/app/controller/controller.php", {acao:'deletarConteudo',idConteudo:idConteudo}).done( function( data ){
+                    if( data == 'conteudoDeletadoSucesso' ) {
+                        msg( 'Registro deletado com sucesso!!', 'sucesso' );
+                        setTimeout(function(){
+                            document.location.href = host + "/admin/painel/?p=conteudo" ;
+                        }, 1000);
+                    }else if( data == 'erroDeletarConteudo' ) {
+                        msg( 'Erro ao tentar deletar o registro!', 'erro');
+                    }
+                    console.log( data )
+                } );
+            }
+        } );
+    } );
 });
