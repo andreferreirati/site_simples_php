@@ -92,6 +92,10 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
               <li><a href="?p=clientes">Listar</a></li>
               <li><a href="?p=clientesCadastrar">Cadastrar</a></li>
           </ul>
+          <ul class="nav navbar-link">
+              <li class="nav-header"><i class="glyphicon glyphicon-user"></i> Clientes</a></li>
+              <li><a href="?p=fixtureUsuario">Executar Fixture de Usuário</a></li>
+          </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h5  class="sub-header text-right">
