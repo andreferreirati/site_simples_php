@@ -180,8 +180,50 @@ switch( $acao ) :
         $idConteudo     = filter_input( INPUT_POST, 'idConteudo', FILTER_SANITIZE_NUMBER_INT );
         $pagConteudo    = new Conteudo();
         $deletarConteudo = $pagConteudo->deletarConteudo( $idConteudo );
-        echo ( $deletarConteudo ) ? 'conteudoDeletadoSucesso' : 'erroDeletarConteudo';
+        echo ( $deletarConteudo ) ? 'conteudoDeletadoSucesso' : 'erroDeletar';
         break;
+
+    case 'alterarMenu':
+        $idMenu        = filter_input( INPUT_POST, 'idMenu', FILTER_SANITIZE_NUMBER_INT );
+        $nome          = filter_input( INPUT_POST, 'nome', FILTER_SANITIZE_STRING );
+        $href          = filter_input( INPUT_POST, 'href', FILTER_SANITIZE_STRING );
+        $hint          = filter_input( INPUT_POST, 'hint', FILTER_SANITIZE_STRING );
+        $sit_cancelado = filter_input( INPUT_POST, 'sit_cancelado', FILTER_SANITIZE_STRING );
+        $dadosMenu = array(
+            'id_menu'      => $idMenu,
+            'nome_menu'    => $nome,
+            'href_menu'    => $href,
+            'hint_menu'    => $hint,
+            'sit_cancelado'=> $sit_cancelado,
+        );
+        $menu = new Menu();
+        $updateMenu = $menu->alterarMenu( $dadosMenu );
+        echo ( $updateMenu ) ? 'menuAlteradoSucesso' : 'erroAlterarMenu';
+        break;
+
+    case 'cadastrarMenu':
+        $idMenu        = filter_input( INPUT_POST, 'idMenu', FILTER_SANITIZE_NUMBER_INT );
+        $nome          = filter_input( INPUT_POST, 'nome', FILTER_SANITIZE_STRING );
+        $href          = filter_input( INPUT_POST, 'href', FILTER_SANITIZE_STRING );
+        $hint          = filter_input( INPUT_POST, 'hint', FILTER_SANITIZE_STRING );
+        $sit_cancelado = filter_input( INPUT_POST, 'sit_cancelado', FILTER_SANITIZE_STRING );
+        $dadosMenu = array(
+            'id_menu'      => $idMenu,
+            'nome_menu'    => $nome,
+            'href_menu'    => $href,
+            'hint_menu'    => $hint,
+            'sit_cancelado'=> $sit_cancelado,
+        );
+        $menu = new Menu();
+        $cadastrarMenu = $menu->cadastrarMenu( $dadosMenu );
+        echo ( $cadastrarMenu ) ? 'menuCadastradoSucesso' : 'erroCadastrarMenu';
+        break;
+
+    case 'deletarMenu':
+        $idMenu     = filter_input( INPUT_POST, 'idMenu', FILTER_SANITIZE_NUMBER_INT );
+        $pagMenu    = new Menu();
+        $deletarMenu = $pagMenu->deletarMenu( $idMenu );
+        echo ( $deletarMenu ) ? 'menuDeletadoSucesso' : 'erroDeletarMenu';
         break;
 endswitch;
 

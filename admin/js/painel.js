@@ -460,4 +460,154 @@ $(document).ready(function() {
             }
         } );
     } );
+
+    // =============== Menu ============================
+
+    $('#frmAlterarMenu').bootstrapValidator({
+        message: 'Este valor não é válido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            nome: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o nome do menu!.' }
+                }
+            },
+            href: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o link que vai ser atrelado ao menu!.' }
+                }
+            },
+            hint: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o hint para o menu!.' }
+                }
+            },
+            sit_cancelado:{
+                validators: {
+                    notEmpty: {
+                        message: 'Por favor informe a situação do menu.'
+                    }
+                }
+            }
+        }
+    })
+        .on( 'success.form.bv', function( event ){
+            event.preventDefault();
+            var formulario   = $( event.target );
+            var btnCadastrar = formulario.find(':button');
+            var load         = formulario.find('.load');
+            $.ajax( {
+                url: host + "/admin/app/controller/controller.php",
+                type:"POST",
+                data: "acao=alterarMenu&" + formulario.serialize(),
+                beforeSend: function(){
+                    btnCadastrar.attr( 'disabled', true );
+                    $( load).fadeIn( 'slow' );
+                },
+                success: function( data ) {
+                    $( load).fadeOut( 'slow', function(){
+                        btnCadastrar.attr( 'disabled', false );
+                    } );
+
+                    if( data == 'menuAlteradoSucesso' ) {
+                        msg( 'Menu alterado com sucesso!!', 'sucesso' );
+                        setTimeout(function(){
+                            document.location.href = host + "/admin/painel/?p=menu" ;
+                        }, 2000);
+                    }else if( data == 'erroAlterarMenu' ) {
+                        msg( 'Erro ao tentar alterar os dados do menu!', 'erro');
+                    }
+
+                    console.log(data);
+                }
+            } );
+        } );
+
+    $('#frmCadastrarMenu').bootstrapValidator({
+        message: 'Este valor não é válido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            nome: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o nome do menu!.' }
+                }
+            },
+            href: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o link que vai ser atrelado ao menu!.' }
+                }
+            },
+            hint: {
+                validators: {
+                    notEmpty: { message: 'Este campo é obrigatório. Favor informar o hint para o menu!.' }
+                }
+            },
+            sit_cancelado:{
+                validators: {
+                    notEmpty: {
+                        message: 'Por favor informe a situação do menu.'
+                    }
+                }
+            }
+        }
+    })
+        .on( 'success.form.bv', function( event ){
+            event.preventDefault();
+            var formulario   = $( event.target );
+            var btnCadastrar = formulario.find(':button');
+            var load         = formulario.find('.load');
+            $.ajax( {
+                url: host + "/admin/app/controller/controller.php",
+                type:"POST",
+                data: "acao=cadastrarMenu&" + formulario.serialize(),
+                beforeSend: function(){
+                    btnCadastrar.attr( 'disabled', true );
+                    $( load).fadeIn( 'slow' );
+                },
+                success: function( data ) {
+                    $( load).fadeOut( 'slow', function(){
+                        btnCadastrar.attr( 'disabled', false );
+                    } );
+
+                    if( data == 'menuCadastradoSucesso' ) {
+                        msg( 'Menu cadastrado com sucesso!!', 'sucesso' );
+                        setTimeout(function(){
+                            document.location.href = host + "/admin/painel/?p=menu" ;
+                        }, 2000);
+                    }else if( data == 'erroCadastrarMenu' ) {
+                        msg( 'Erro ao tentar cadastrar os dados do menu!', 'erro');
+                    }
+
+                    console.log(data);
+                }
+            } );
+        } );
+
+    tbody.on( 'click', '#btnDeletarMenu', function(e) {
+        e.preventDefault();
+        var idMenu = $(this).attr( 'data-id' );
+        BootstrapDialog.confirm( "Realmente deseja deletar este registro?", function(result) {
+            if ( result === true ) {
+                $.post( host + "/admin/app/controller/controller.php", {acao:'deletarMenu',idMenu:idMenu}).done( function( data ){
+                    if( data == 'menuDeletadoSucesso' ) {
+                        msg( 'Registro deletado com sucesso!!', 'sucesso' );
+                        setTimeout(function(){
+                            document.location.href = host + "/admin/painel/?p=menu" ;
+                        }, 1000);
+                    }else if( data == 'erroDeletarMenu' ) {
+                        msg( 'Erro ao tentar deletar o registro!', 'erro');
+                    }
+                    console.log( data )
+                } );
+            }
+        } );
+    } );
 });

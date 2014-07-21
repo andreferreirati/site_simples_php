@@ -84,9 +84,8 @@ if( isset( $_GET['p'] ) && $_GET['p'] == 'logout' ) {
           </ul>
           <ul class="nav navbar-link">
               <li class="nav-header"><i class="glyphicon glyphicon-th"></i> Menu</a></li>
-              <li><a href="#">Pesquisar</a></li>
-              <li><a href="#">Cadastrar</a></li>
-              <li><a href="#">Alterar</a></li>
+              <li><a href="?p=menu">Listar</a></li>
+              <li><a href="?p=menuCadastrar">Cadastrar</a></li>
           </ul>
           <ul class="nav navbar-link">
               <li class="nav-header"><i class="glyphicon glyphicon-globe"></i> Clientes</a></li>

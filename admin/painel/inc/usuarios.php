@@ -15,7 +15,7 @@ $listaUsuarios = $usuarios->listarUsuarios();
 
 ?>
 <div class="span10 table-responsive" id="tblClientes">
-    <h1>Clientes cadastrados</h1>
+    <h1>Usuários cadastrados</h1>
     <div class="msgRetorno"></div>
     <table class="table table-striped">
         <thead>
