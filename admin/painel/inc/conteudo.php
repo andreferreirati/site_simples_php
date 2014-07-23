@@ -29,7 +29,7 @@ $listarConteudo = $conteudoPagina->listarConteudo();
             <tr>
                 <td class="col-sm-2"><?php echo $lisContent['titulo_conteudo']; ?></td>
                 <td class="col-sm-1"><?php echo $lisContent['slug_conteudo']; ?></td>
-                <td class="col-sm-6"><?php echo limitarCaracter( $lisContent['conteudo_conteudo'], 400 ); ?></td>
+                <td class="col-sm-6"><?php echo utf8_decode( limitarCaracter( $lisContent['conteudo_conteudo'], 400 ) ); ?></td>
                 <td class="col-sm-2">
                     <a href="?p=conteudoAlterar&id=<?php echo $lisContent['id']; ?>"><button class="btn btn-info">Alterar</button></a>
                     <button class="btn btn-danger" id="btnDeletarConteudo" data-id="<?php echo $lisContent['id']; ?>" >Deletar </button>
