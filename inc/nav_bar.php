@@ -47,7 +47,7 @@ try {
                         <input type="submit" value="Pesquisar.."/>
                     </form>
                     <ul class="nav navbar-nav">
-                        <a href="<?=$base_url?>/admin/painel" class="btn btn-warning">Administração</a>
+                        <a href="../admin" class="btn btn-warning">Administração</a>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -57,8 +57,9 @@ try {
 
     }catch (PDOException $e){
         echo '<h2 class="fixturError">Prezado Usuário:</h2>';
-        echo '<p class="fixturErrorMsgUsuario">Antes de rodre á aplicação é necessário executar o script2.sql para montar a estrutura do site
-        <br/>Você pode encontrar o script aqui: <a href="https://github.com/luvett/site_simples_php/blob/master/sql/script2.sql" target="_blank">Script SQL</a></p>';
+        echo '<p class="fixturErrorMsgUsuario">Antes de rodre á aplicação é necessário executar o fixtureSql.php para montar a estrutura do site.
+        <br/> Entre no promt de comando e vai ate a pasta: raiz_do_site/fixtures/ <br /> E execute o arquivo: fixtureSql.php <br/>
+        utlizando o comando: php fixtureSql.php  </p>';
     }
 
 } catch ( PDOException $e ) {
