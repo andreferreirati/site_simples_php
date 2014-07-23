@@ -23,18 +23,21 @@ const APP_HOST_PRODUCAO = 'url_da_pagina_em_producao';
 //para poder abrir o sistema corretamente
 $strHostApp = '';
 
-switch( $_SERVER['SERVER_NAME'] )
-{
-    case APP_HOST_DEV:
-        $base_url = $strHttp . APP_HOST_DEV;
-        break;
-    case APP_HOST_DEV_IP:
-        $base_url = $strHttp . APP_HOST_DEV_IP . ':' .$_SERVER['SERVER_PORT'];
-        break;
-    case APP_HOST_PRODUCAO:
-        $base_url = $strHttp . APP_HOST_PRODUCAO .DIRECTORY_SEPARATOR . 'site_simples';
-        break;
+if( isset( $_SERVER['SERVER_NAME'] ) )  {
+    switch( $_SERVER['SERVER_NAME'] )
+    {
+        case APP_HOST_DEV:
+            $base_url = $strHttp . APP_HOST_DEV;
+            break;
+        case APP_HOST_DEV_IP:
+            $base_url = $strHttp . APP_HOST_DEV_IP . ':' .$_SERVER['SERVER_PORT'];
+            break;
+        case APP_HOST_PRODUCAO:
+            $base_url = $strHttp . APP_HOST_PRODUCAO .DIRECTORY_SEPARATOR . 'site_simples';
+            break;
+    }
 }
+
 
 require_once( 'autoload.php' );
 require_once( 'funcoes/conexao.php' );

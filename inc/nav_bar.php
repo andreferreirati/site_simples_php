@@ -57,9 +57,9 @@ try {
 
     }catch (PDOException $e){
         echo '<h2 class="fixturError">Prezado Usuário:</h2>';
-        echo '<p class="fixturErrorMsgUsuario">Antes de rodre á aplicação é necessário executar o fixtureSql.php para montar a estrutura do site.
-        <br/> Entre no promt de comando e vai ate a pasta: raiz_do_site/fixtures/ <br /> E execute o arquivo: fixtureSql.php <br/>
-        utlizando o comando: php fixtureSql.php  </p>';
+        echo '<p class="fixturErrorMsgUsuario">Antes de rodar á aplicação é necessário executar o fixtureSql.php para montar a estrutura do site.
+        <br/> Entre no promt de comando e vai até a pasta: cd raiz_do_site/fixtures/ <br /> E execute o arquivo: fixtureSql.php <br/>
+        utilizando o comando: php fixtureSql.php. Não esqueça primeiramente de criar o banco: site_simples</p>';
     }
 
 } catch ( PDOException $e ) {
