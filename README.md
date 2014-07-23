@@ -1,8 +1,4 @@
-#Pagina simples em php
-	
-##Modelo de implantação:	
-	
-### Página simples em php:
+# Página simples em php:
 	 sites_simples
 ###Modelo de implantação:
 	a) clonar a aplicação na maquina:
